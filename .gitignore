@@ -1,4 +1,8 @@
 *.log
 *.aux
 *.bak
-*.synctex
+*.synctex*
+Thumbs.db
+*.bbl
+*.blg
+2011-*
