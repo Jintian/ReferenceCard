@@ -1,10 +1,7 @@
-%\documentclass[a4paper,landscape]{article}
 \documentclass[a4paper,twocolumn]{article}
-\usepackage{multicol}
-\usepackage{calc}
 \usepackage{ifthen}
-\usepackage[landscape]{geometry}
 \usepackage{CJK}
+\usepackage[landscape]{geometry}
 \usepackage[pdftex]{graphicx}
 
 % 可以通过下面两种方式获得横幅模式的reference card
@@ -27,11 +24,11 @@
 
 %根据纸张的宽度设置margin
 \ifthenelse{\lengthtest { \paperwidth = 11in}}
-	{ \geometry{top=.5in,left=.5in,right=.5in,bottom=.5in} }
-	{\ifthenelse{ \lengthtest{ \paperwidth = 297mm}}
-		{\geometry{top=1cm,left=1cm,right=1cm,bottom=1cm} }
-		{\geometry{top=1cm,left=1cm,right=1cm,bottom=1cm} }
-	}
+	{\geometry{top=.5in,left=.5in,right=.5in,bottom=.5in}}
+{\ifthenelse{ \lengthtest{ \paperwidth = 297mm}}
+		{\geometry{top=1cm,left=1cm,right=1cm,bottom=1cm}}
+		{\geometry{top=1cm,left=1cm,right=1cm,bottom=1cm}}
+}
 
 % 去掉header和footer
 \pagestyle{empty}
@@ -39,85 +36,83 @@
 % 不打印session号
 \setcounter{secnumdepth}{0}
 
+%缩进、行距设置
 \setlength{\parindent}{0pt}
 \setlength{\parskip}{0pt plus 0.5ex}
-\setlength{\columnsep}{0pt}
 
+% -----------------------------------------------------------------------
+%				正文开始
 % -----------------------------------------------------------------------
 
 \begin{document}
 \begin{CJK}{GBK}{song}
 \raggedright
 
-{\huge Bash Reference Card} \\
-\section{约定}
-下面的快捷键均来自bash的emacs模式\\
-bash -o vi启动vi模式下的bash\\
-Alt=M\\
-Ctrl=C
+%文章标题
+{\huge Bash Reference Card} 			\\
 
+\section{约定}
+	下面的快捷键均来自bash的emacs模式	\\
+	bash -o vi启动vi模式下的bash		\\
+	Alt=M					\\
+	Ctrl=C
 
 \section{相关文件}
-\subsection{执行时机}
-\begin{tabular}{@{}ll@{}}
-$\sim$/.bashrc         & 每次打开shell时被执行 \\
-$\sim$/.bash\_profile   & 用户登录时执行 \\
-$\sim$/.bash\_history   & 命令行历史 \\
-$\sim$/.bash\_logout & 每次退出系统或shell执行\\
-source $\sim$/.bashxxx     &   手动生效\\
-\end{tabular}
+	\subsection{执行时机}
+		\begin{tabular}{@{}ll@{}}
+			$\sim$/.bashrc         		& 	每次打开shell时被执行 	\\
+			$\sim$/.bash\_profile   	& 	用户登录时执行 		\\
+			$\sim$/.bash\_history   	& 	命令行历史 		\\
+			$\sim$/.bash\_logout 		& 	每次退出系统或shell执行	\\
+			source $\sim$/.bashxxx     	& 	手动生效		\\
+		\end{tabular}
 
-\subsection{存放内容}
-\begin{tabular}{@{}ll@{}}
-$\sim$/.bashrc         & 设置一些aliases \\
-$\sim$/.bash\_profile   & 设置一些环境变量 \\
-
-\end{tabular}
-
+	\subsection{存放内容}
+		\begin{tabular}{@{}ll@{}}
+			$\sim$/.bashrc         		& 	设置一些aliases 	\\
+			$\sim$/.bash\_profile   	& 	设置一些环境变量 	\\
+		\end{tabular}
 
 \section{光标移动}
-\begin{tabular}{@{}ll@{}}
-C+a  &将光标移动到第一个字符\\
-C+e  &将光标移动到最后一个字符后面\\
-C+f   &将光标往“前”移动一个字符\\
-C+b  &将光标往“后”移动一个字符\\
-M+f  &将光标往“前”移动一个“单词”\\
-M+b &将光标往“后”移动一个“单词”\\
-C+l   &清屏，将当前命令输入行移动到整个界面的最顶端\\
-\end{tabular}
-\includegraphics[width=0.4\textwidth]{move.jpg}
-
+	\begin{tabular}{@{}ll@{}}
+		C+a  	&	将光标移动到第一个字符				\\
+		C+e  	&	将光标移动到最后一个字符后面			\\
+		C+f   	&	将光标往“前”移动一个字符			\\
+		C+b  	&	将光标往“后”移动一个字符			\\
+		M+f  	&	将光标往“前”移动一个“单词”			\\
+		M+b 	&	将光标往“后”移动一个“单词”			\\
+		C+l   	&	清屏，将当前命令输入行移动到整个界面的最顶端	\\
+	\end{tabular}
+	\includegraphics[width=0.4\textwidth]{move.jpg}
 
 \section{操作命令行历史}
-\begin{tabular}{@{}ll@{}}
-C+p &   前一条输入命令\\
-C+n &   后一条输入命令\\
-M+$<$ &   历史记录里面的第一条命令\\
-M+$>$ &   历史记录里面的最后一条命令\\
-C+r &   搜索命令历史\\
-M+. &   前一条命令的最后一个参数\\
-M+n  M+. & 前一条命令的第n个参数\\
-\end{tabular}
-
-
+	\begin{tabular}{@{}ll@{}}
+		C+p 		&   前一条输入命令		\\
+		C+n 		&   后一条输入命令		\\
+		M+$<$ 		&   历史记录里面的第一条命令	\\
+		M+$>$ 		&   历史记录里面的最后一条命令	\\
+		C+r 		&   搜索命令历史		\\
+		M+. 		&   前一条命令的最后一个参数	\\
+		M+n  M+. 	&   前一条命令的第n个参数	\\
+	\end{tabular}
 
 \section{删除粘贴}
-\begin{tabular}{@{}ll@{}}
-C+d &   删除光标当前所在的字符\\
-C+k &   删除从当前光标到行末的所有字符\\
-C+u &   删除从当前光标到行首的所有字符\\
-M+$<$- & 往“后”删除一个单词\\
-C+w &   往“后”删除一个单词\\
-M+d &   往“前”删除一个单词\\
-C+y &   粘贴\\
-\end{tabular}
-\includegraphics[width=0.4\textwidth]{delete.jpg}
+	\begin{tabular}{@{}ll@{}}
+		C+d 		&   删除光标当前所在的字符		\\
+		C+k 		&   删除从当前光标到行末的所有字符	\\
+		C+u 		&   删除从当前光标到行首的所有字符	\\
+		M+$<$- 		& 往“后”删除一个单词			\\
+		C+w 		&   往“后”删除一个单词		\\
+		M+d 		&   往“前”删除一个单词		\\
+		C+y 		&   粘贴				\\
+	\end{tabular}
+	\includegraphics[width=0.4\textwidth]{delete.jpg}
 
 \section{补全}
-\begin{tabular}{@{}ll@{}}
-tab &   补全\\
-M+/ &   文件夹补全
-\end{tabular}
+	\begin{tabular}{@{}ll@{}}
+		tab 	&   补全		\\
+		M+/ 	&   文件夹补全
+	\end{tabular}
 
 \rule{0.3\linewidth}{0.25pt}
 
